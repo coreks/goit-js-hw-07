@@ -15,19 +15,11 @@ const images = [
 
 const galleryListEl = document.querySelector('#gallery');
 
-for (let i = 0; i < images.length; i++) {
-  galleryListEl.insertAdjacentHTML(
-    'afterbegin',
-    `<li> <img src='${images[i].url}' alt='${images[i].alt}' > </li>`,
-  );
-}
+const imagesItemsEl = images.map(({ url, alt }) => {
+  return `<li> <img src='${url}' alt='${alt}' > </li>`;
+});
+
+galleryListEl.insertAdjacentHTML('afterbegin', imagesItemsEl.join(''));
 
 galleryListEl.style.display = 'flex';
 galleryListEl.style.flexDirection = 'column-reverse';
-
-// images.forEach(image => {
-//   galleryListEl.insertAdjacentHTML(
-//     'afterbegin',
-//     `<li> <img src='${image.url}' alt='${image.alt}' > </li>`,
-//   );
-// });
